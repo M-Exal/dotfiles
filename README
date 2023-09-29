@@ -1,4 +1,6 @@
 /!\ WORK IN PROGRESS /!\
 To install all packages and dependances,
-  $sudo bash install.sh
+  $ sudo bash install.sh
+To move all the config files,
+  $ sudo bash moves.sh
 /!\ WORK IN PROGRESS /!\
