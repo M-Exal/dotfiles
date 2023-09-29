@@ -1,0 +1,2 @@
+To install all packages and dependances,
+  $sudo bash install.sh
