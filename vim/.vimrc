@@ -1,6 +1,6 @@
 call plug#begin()
 
-Plug 'townk/vim-autoclose'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'mhinz/vim-startify'
 Plug 'https://github.com/jlcrochet/vim-ruby'
@@ -11,7 +11,6 @@ Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
 Plug 'https://github.com/preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
 Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
-Plug 'https://github.com/ervandew/supertab'
  
 call plug#end()
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -49,9 +48,9 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set encoding=UTF-8
-set omnifunc=javascriptcomplete
-autocmd BufNewFile,BufRead *.controller.es6 set filetype=javascript
-autocmd BufNewFile,BufRead *.config.es6 set filetype=javascript
+set signcolumn=yes
+
+autocmd BufNewFile,BufRead *.es6 set filetype=javascript
 
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -61,10 +60,17 @@ let g:ruby_recommended_style = 1
 let g:ruby_operators = 1
 let g:ruby_pseudo_operators=1
 let g:ruby_syntax_errors = 1
+let g:neoformat_try_node_exe = 1
+let g:coc_disable_startup_warning = 1
+let g:NERDTreeWinSize=69
 
-nmap <F1> :NERDTree<CR>
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
+nmap <F1> :NERDTreeToggle<CR>
+
 nmap <F2> :tabnext<CR>
-nmap <C-T> :tabnew<CR>:NERDTree<CR>
+nmap <C-T> :tabnew<CR>:NERDTreeToogle<CR>
 nmap <C-Down> :m +1<CR>
 nmap <C-Up> :m -2<CR>
-
