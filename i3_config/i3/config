@@ -59,8 +59,8 @@ bindsym $mod+Shift+A kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-#bindsym $mod+d exec  --no-startup-id rofi -show drun combi -icon-theme "Papirus" -show-icons
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec  --no-startup-id rofi -show drun combi -icon-theme "Papirus" -show-icons
+#bindsym $mod+d exec --no-startup-id rofi -show drun
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -68,10 +68,10 @@ bindsym $mod+d exec --no-startup-id rofi -show drun
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+m focus right
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+m focus left
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -161,7 +161,22 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
+
+  bindsym l exec i3-msg exit
+
+  bindsym r exec systemctl reboot
+
+  bindsym s exec systemctl shutdown
+
+  bindsym Escape mode "default"
+
+  bindsym Return mode "default"
+}
+
+bindsym $mod+Shift+e mode "exit: [l]ogout, [r]eboot, [s]hutdown"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -191,7 +206,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # set primary gruvbox colorscheme colors
-set $bg #282828
+set $bg #1e1a1b
 set $red #cc241d
 set $green #98971a
 set $yellow #d79921
@@ -199,19 +214,18 @@ set $blue #458588
 set $purple #b16286
 set $aqua #689d68
 set $gray #a89984
-set $darkgray #1d2021
+set $darkgray #1e1a1b
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
 # class                 border  bground text    indicator child_border
-#client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+#client.focused          #458588 #6272A4 #F8F8F2 #6272A4   #6272A4
 #client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
 #client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
 #client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
 #client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
-# blue gruvbox
 # class                 border|backgr|text|indicator|child_border
 client.focused          $blue $blue $darkgray $purple $darkgray
 client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
@@ -221,22 +235,23 @@ client.urgent           $red $red $white $red $red
 bar {
   position top
   colors {
-    background #282A36
+    background #1e1a1b
     statusline #F8F8F2
-    separator  #44475A
+    separator  #458588
 
     focused_workspace  $blue $blue #F8F8F2
     active_workspace   $blue $blue #F8F8F2
-    inactive_workspace #282A36 #282A36 #BFBFBF
+    inactive_workspace #1e1a1b #1e1a1b #F8F8F2
     urgent_workspace   #FF5555 #FF5555 #F8F8F2
     binding_mode       #FF5555 #FF5555 #F8F8F2
   }
     status_command i3status --config ~/.config/i3status/i3status.conf
-    separator_symbol "⫘"
+    #separator_symbol "⫘"
+    separator_symbol "<<>>"
 }
 
 # Display Wallpaper
-exec_always feh --bg-fill /home/mojjo/Pictures/wp7528877-minimalist-forest-wallpapers.jpg
+exec_always feh --bg-fill /home/mojjo/Pictures/631598.jpg
 
 # Hide top window title
 for_window [class="^.*"] border pixel 3
@@ -251,8 +266,8 @@ gaps outer 10
 exec_always --no-startup-id picom  -b --config ~/.config/picom/picom.conf 
 
 # Color shemes for windows 
- set $bgcolor    #6272A4
- set $in-bgcolor #363636
+ set $bgcolor    #458588
+ set $in-bgcolor #1e1a1b
  set $text       #ffffff
  set $u-bgcolor  #ff0000
  set $indicator  #a8a3c1
