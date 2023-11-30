@@ -1,4 +1,8 @@
 call plug#begin()
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'jlcrochet/vim-ruby'
+Plug 'vieira/vim-javascript'
 Plug 'airblade/vim-gitgutter'
 Plug 'voldikss/vim-floaterm'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -74,6 +78,7 @@ set colorcolumn=80
 set updatetime=250
 
 autocmd BufNewFile,BufRead *.es6 set filetype=javascript
+autocmd BufNewFile,BufRead *.scss.erb set filetype=css
 autocmd BufNewFile,BufReadpost *.rb setfiletype ruby
 autocmd BufEnter * lcd %:p:h
 
@@ -107,6 +112,7 @@ let g:loaded_scrollbar=1
 let g:airline_theme='murmur'
 let g:prettier#config#single_quote = 'true'
 let g:prettier#config#trailing_comma = 'all'
+let g:coc_global_extensions = ["coc-json","coc-git", "coc-eslint", "coc-prettier", "coc-tsserver", "coc-html"]
 
 let g:startify_custom_header = [
       \ '          ⡴⠁⠀⢌⠉⠀⠀⠀⡀⠀⡀⠀⡀⠸⡀⠀⠀⠀⣰⣴⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠂⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀' ,

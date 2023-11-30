@@ -1,0 +1,5 @@
+app/assets/javascripts/vendor/**/*
+app/assets/stylesheets/vendor/**/*
+tmp/*
+db/schema.rb
+db/seeds.rb

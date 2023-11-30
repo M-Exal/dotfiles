@@ -1,0 +1,26 @@
+{
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 2017,
+      "ecmaFeatures": {
+      }
+    },
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "rules": {
+      "indent": [2, 2],
+      "space-before-function-paren": "off",
+      "linebreak-style": "off",
+      "global-require": "off",
+      "semi": ["warn", "always"],
+      "arrow-body-style": "off",
+      "no-undef": "off",
+      "no-var": "warn",
+      "no-console": "warn",
+      "no-else-return": ["error", { "allowElseIf": true }],
+      "strict": ["error", "safe"]
+    }
+
+  }
