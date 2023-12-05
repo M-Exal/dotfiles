@@ -1,4 +1,5 @@
 call plug#begin()
+Plug 'terryma/vim-smooth-scroll'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jlcrochet/vim-ruby'
@@ -112,7 +113,7 @@ let g:loaded_scrollbar=1
 let g:airline_theme='murmur'
 let g:prettier#config#single_quote = 'true'
 let g:prettier#config#trailing_comma = 'all'
-let g:coc_global_extensions = ["coc-json","coc-git", "coc-eslint", "coc-prettier", "coc-tsserver", "coc-html"]
+let g:coc_global_extensions = ["coc-json","coc-git", "coc-eslint", "coc-prettier", "coc-tsserver", "coc-html", "coc-angular"]
 
 let g:startify_custom_header = [
       \ '          ⡴⠁⠀⢌⠉⠀⠀⠀⡀⠀⡀⠀⡀⠸⡀⠀⠀⠀⣰⣴⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠂⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀' ,
@@ -157,6 +158,7 @@ autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 autocmd BufWritePre *.js,*.jsx,*.html,*.rb,*.es6 PrettierAsync
 autocmd BufWritePre * match ExtraWhitespace /\s\+$/
+autocmd VimEnter * hi Visual cterm=none ctermbg=darkgrey
 
 nmap <F1> :NERDTreeToggle<CR>
 
@@ -165,3 +167,7 @@ nmap <C-T> :tabnew<CR>:NERDTreeToggle<CR>
 nmap <C-Down> :m +1<CR>
 nmap <C-Up> :m -2<CR>
 nmap <C-U> :FloatermNew<CR>
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
