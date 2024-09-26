@@ -6,3 +6,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     vim.cmd('silent! checktime')
   end,
 })
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TelescopeFindPre",
+  callback = function() end,
+})
+

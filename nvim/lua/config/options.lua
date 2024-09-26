@@ -13,8 +13,8 @@ vim.opt.wrap = true
 vim.opt.ruler = true
 vim.opt.breakindent = true
 vim.g.mapleader = ' '
+vim.opt.termguicolors = true
 vim.cmd[[colorscheme tokyonight]]
-
 -- Rendre l'arrière-plan transparent
 vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
