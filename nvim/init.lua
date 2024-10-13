@@ -22,6 +22,7 @@ local function load_plugins()
   return plugins
 end
 
+vim.opt.termguicolors = true
 require("lazy").setup(load_plugins())
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.clangd.setup{}
