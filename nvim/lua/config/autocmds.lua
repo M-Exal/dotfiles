@@ -1,5 +1,5 @@
 vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "*.c",
+  pattern = "*.c,*.h",
   callback = function()
     vim.fn.system("clang-format -i " .. vim.fn.expand("%"))
 
