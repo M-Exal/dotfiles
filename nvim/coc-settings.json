@@ -1,0 +1,22 @@
+{
+    "suggest.autoTrigger": "always",
+    "languageserver": {
+        "python": {
+            "command": "pyright-langserver",
+            "args": [
+                "--stdio"
+            ],
+            "filetypes": [
+                "python"
+            ],
+            "trace.server": "verbose",
+            "settings": {
+                "python": {
+                    "analysis": {
+                        "typeCheckingMode": "off"
+                    }
+                }
+            }
+        }
+    }
+}

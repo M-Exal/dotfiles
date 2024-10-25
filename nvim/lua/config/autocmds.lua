@@ -1,5 +1,5 @@
 vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "*.c,*.h",
+  pattern = {"*.c","*.h"},
   callback = function()
     vim.fn.system("clang-format -i " .. vim.fn.expand("%"))
 
@@ -12,12 +12,12 @@ vim.api.nvim_create_autocmd("User", {
   callback = function() end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'sh',
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = {"*.js", "*.jsx", "*.ts", "*.tsx", "*.json", "*.html", "*.css", "*.md"}, -- adapte selon tes besoins
   callback = function()
-    vim.lsp.start({
-      name = 'bash-language-server',
-      cmd = { 'bash-language-server', 'start' },
-    })
+    -- Formatte le fichier directement dans le buffer sans sauvegarde initiale
+    require('prettier').format()
+    -- Sauvegarde après formatage pour éviter les multiples actions
+    vim.cmd('silent! noautocmd write')
   end,
 })

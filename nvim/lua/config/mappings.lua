@@ -7,7 +7,9 @@ vim.api.nvim_set_keymap('n', '<C-Down>', [[:m +1<CR>]], { noremap = true, silent
 vim.api.nvim_set_keymap('n', '<C-Up>', [[:m -2<CR>]], { noremap = true, silent = true })
 vim.keymap.set('n', '<F1>', ':NvimTreeToggle<cr>', {desc = 'toggle NvimTree'}) -- f1 -> tree
 vim.keymap.set('n', '<space>t', ':tabnew<cr> :NvimTreeToggle<cr>')
-vim.keymap.set('n', '<F2>', ':tabnext<cr>')
+vim.keymap.set('n', '<F2>', ':bprev<cr>')
+vim.keymap.set('n', '<F3>', ':bnext<cr>')
+-- vim.keymap.set('n', '<F2>', ':tabnext<cr>')
 -- clipboard
 vim.keymap.set({'n', 'x'}, 'gy', '"+y') -- g+y -> copy
 vim.keymap.set({'n', 'x'}, 'gp', '"+p') -- g+p -> paste

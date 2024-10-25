@@ -5,13 +5,11 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable",
     lazypath,
   })
 end
 vim.opt.rtp:prepend(lazypath)
-
--- Helper function to require all plugins from ~/.config/nvim/lua/plugins
 local function load_plugins()
   local plugins = {}
   local plugin_files = vim.fn.globpath("~/.config/nvim/lua/plugins", "*.lua", false, true)
@@ -30,3 +28,5 @@ require("config.options")
 require("config.mappings")
 require("config.autocmds")
 require("config.colorscheme")
+require('plugins.coc')
+
