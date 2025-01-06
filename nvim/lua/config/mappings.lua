@@ -19,6 +19,8 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find f
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+-- Utilise <CR> pour valider l'autocomplétion de coc.nvim
+vim.api.nvim_set_keymap("i", "<CR>", [[coc#pum#visible() ? coc#_select_confirm() : "\<CR>"]], { noremap = true, silent = true, expr = true })
 
 -- make and execute c code
 vim.keymap.set('n', '<space>m', function()

@@ -21,6 +21,7 @@ local function load_plugins()
 end
 
 vim.opt.termguicolors = true
+vim.opt.clipboard:append("unnamedplus")
 require("lazy").setup(load_plugins())
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.clangd.setup{}
