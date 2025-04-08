@@ -1,3 +1,4 @@
+vim.opt.termguicolors = true  -- Assure-toi que termguicolors est activé pour une meilleure gestion des couleurs
 -- define your colorscheme here
 local colorscheme = 'nightfox'
 

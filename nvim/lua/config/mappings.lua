@@ -8,8 +8,7 @@ vim.api.nvim_set_keymap('n', '<C-Up>', [[:m -2<CR>]], { noremap = true, silent =
 vim.keymap.set('n', '<F1>', ':NvimTreeToggle<cr>', {desc = 'toggle NvimTree'}) -- f1 -> tree
 vim.keymap.set('n', '<space>t', ':tabnew<cr> :NvimTreeToggle<cr>')
 vim.keymap.set('n', '<F2>', ':bprev<cr>')
-vim.keymap.set('n', '<F3>', ':bnext<cr>')
--- vim.keymap.set('n', '<F2>', ':tabnext<cr>')
+vim.keymap.set('n', '<F2>', ':bnext<cr>')
 -- clipboard
 vim.keymap.set({'n', 'x'}, 'gy', '"+y') -- g+y -> copy
 vim.keymap.set({'n', 'x'}, 'gp', '"+p') -- g+p -> paste
@@ -19,6 +18,12 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find f
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+vim.keymap.set('n', '<leader>fk', builtin.quickfix, { desc = 'Telescope quickfix' })
+vim.keymap.set('n', '<leader>fl', builtin.loclist, { desc = 'Telescope location list' })
+-- Utilise <CR> pour valider l'autocomplétion de coc.nvim
+vim.api.nvim_set_keymap("i", "<CR>", [[coc#pum#visible() ? coc#_select_confirm() : "\<CR>"]], { noremap = true, silent = true, expr = true })
 
 -- make and execute c code
 vim.keymap.set('n', '<space>m', function()

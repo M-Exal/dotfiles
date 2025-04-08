@@ -1,93 +1,31 @@
--- ~/.config/nvim/lua/plugins/nvim-cmp.lua
 return {
-  'hrsh7th/nvim-cmp',
-  dependencies = {
-    'hrsh7th/cmp-buffer',    -- Source pour les mots dans le buffer
-    'hrsh7th/cmp-path',      -- Source pour les chemins de fichiers
-    'hrsh7th/cmp-cmdline',   -- Source pour la ligne de commande
-    {
-      'hrsh7th/cmp-nvim-lsp',
-      version = "v1.39.8", -- Force l'installation de la version 1.39.8
-    },
-    'L3MON4D3/LuaSnip',      -- Snippets pour compléter
-    'saadparwaiz1/cmp_luasnip',  -- Source pour LuaSnip
-    'nvim-tree/nvim-web-devicons', -- icons integration
-  },
+  'hrsh7th/nvim-cmp',           -- Autocomplétion
+  'hrsh7th/cmp-nvim-lsp',       -- Source LSP pour nvim-cmp
+  'saadparwaiz1/cmp_luasnip',   -- Source pour les snippets
+  'L3MON4D3/LuaSnip',           -- Snippets Lua
   config = function()
-    local cmp = require('cmp')
-    local luasnip = require('luasnip')
-
-    local kind_icons = 
-    {
-      Text = "",
-      Method = " ",
-      Function = "󰡱 ",
-      Constructor = " ",
-      Field = "ﰠ",
-      Variable = "󱃼 ",
-      Class = " ",
-      Interface = " ",
-      Module = " ",
-      Property = "ﰠ",
-      Unit = " ",
-      Value = "",
-      Enum = " ",
-      Keyword = "",
-      Snippet = " ",
-      Color = " ",
-      File = " ",
-      Reference = " ",
-      Folder = " ",
-      EnumMember = " ",
-      Constant = " ",
-      Struct = "פּ",
-      Event = "",
-      Operator = "",
-      TypeParameter = ""
-    }
-
+    -- Configuration de nvim-cmp
+    local cmp = require'cmp'
     cmp.setup({
       snippet = {
         expand = function(args)
-          luasnip.lsp_expand(args.body)
+          require('luasnip').lsp_expand(args.body)  -- Utilise luasnip pour les snippets
         end,
       },
-      mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      mapping = {
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Valide avec Entrée
-      }),
-      formatting = {
-        format = function(entry, vim_item)
-          -- Ajoute des icônes aux suggestions
-          vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind] or '', vim_item.kind)
-          return vim_item
-        end
+        ['<C-e>'] = cmp.mapping.close(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
       },
-      sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-      }, {
-        { name = 'buffer' },
-        { name = 'path' },
-      })
+      sources = {
+        { name = 'nvim_lsp' },      -- Source LSP pour la complétion
+        { name = 'luasnip' },       -- Source pour les snippets Lua
+      },
     })
-
-    -- Configuration spécifique pour cmp-cmdline
-    -- cmp.setup.cmdline('/', {
-    --   sources = {
-    --     { name = 'buffer' }
-    --   }
-    -- })
-
-    -- cmp.setup.cmdline(':', {
-    --   sources = cmp.config.sources({
-    --     { name = 'path' }
-    --   }, {
-    --     { name = 'cmdline' }
-    --   })
-    -- })
   end
 }
+
